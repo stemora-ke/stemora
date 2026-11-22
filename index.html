@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stemora Academy — Grade 10 CBC / CBE Visual STEM &amp; Study Hub</title>
-  <!-- Custom Colorful Circular "S" Browser Tab Icon (Favicon) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='ke' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2310b981'/%3E%3Cstop offset='50%25' stop-color='%23ef4444'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='%23070a10' stroke='url(%23ke)' stroke-width='4.5'/%3E%3Ctext x='32' y='44' font-family='Arial, sans-serif' font-size='35' font-weight='900' fill='url(%23ke)' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
@@ -27,14 +26,10 @@
       color: var(--text);
       line-height: 1.6;
     }
-
-    /* Kenyan Flag Top Accent Stripe */
     .ke-ribbon {
       height: 5px;
       background: linear-gradient(90deg, #000000 0%, #000000 30%, #ffffff 32%, #bb0000 34%, #bb0000 66%, #ffffff 68%, #006600 70%, #006600 100%);
     }
-
-    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -91,11 +86,8 @@
       margin-left: 1.25rem;
       font-size: 0.92rem;
       font-weight: 600;
-      transition: color 0.2s;
     }
     nav a:hover { color: var(--green); }
-
-    /* Hero */
     .hero {
       max-width: 1140px;
       margin: 0 auto;
@@ -135,10 +127,7 @@
       flex-wrap: wrap;
       margin-bottom: 2rem;
     }
-    .search-bar {
-      max-width: 580px;
-      margin: 0 auto;
-    }
+    .search-bar { max-width: 580px; margin: 0 auto; }
     .search-bar input {
       width: 100%;
       padding: 0.95rem 1.2rem;
@@ -149,8 +138,6 @@
       font-size: 1rem;
     }
     .search-bar input:focus { outline: none; border-color: var(--green); }
-
-    /* Pathway Strip */
     .pathways {
       max-width: 1140px;
       margin: 0 auto 1rem;
@@ -170,8 +157,6 @@
     .pathway-card.gold { border-left-color: var(--gold); }
     .pathway-card strong { display: block; font-size: 0.98rem; margin-bottom: 0.2rem; }
     .pathway-card span { color: var(--muted); font-size: 0.84rem; }
-
-    /* Sections */
     section { max-width: 1140px; margin: 0 auto; padding: 2.8rem 1.5rem; }
     .sec-head {
       display: flex;
@@ -183,8 +168,6 @@
     }
     .sec-head h2 { font-size: 1.75rem; font-weight: 800; }
     .sec-head p { color: var(--muted); }
-
-    /* Filters */
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .filter-btn {
       background: var(--surface);
@@ -201,8 +184,6 @@
       color: #042f2e;
       border-color: var(--green);
     }
-
-    /* Cards Grid */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
@@ -240,7 +221,6 @@
     .author-line { font-size: 0.8rem; color: #34d399; font-weight: 700; margin-bottom: 0.6rem; }
     .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.3rem; }
     .card-actions { display: grid; grid-template-columns: 1fr 1.35fr; gap: 0.65rem; }
-
     .btn {
       display: inline-block;
       padding: 0.78rem 1.1rem;
@@ -256,8 +236,6 @@
     .btn-primary:hover { background: var(--green-dark); color: #fff; }
     .btn-outline { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--green); }
-
-    /* Interactive CBC Quiz Box */
     .quiz-box {
       background: linear-gradient(135deg, #101827 0%, #0d1b18 100%);
       border: 1px solid var(--green);
@@ -285,8 +263,6 @@
       display: none;
       margin-bottom: 1rem;
     }
-
-    /* Creator Form */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -309,8 +285,6 @@
       font-size: 0.95rem;
     }
     textarea { grid-column: 1 / -1; min-height: 95px; }
-
-    /* Modal */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -335,3 +309,175 @@
       align-items: center;
       margin-bottom: 1rem;
     }
+    .close-btn { background: none; border: none; color: var(--muted); font-size: 1.6rem; cursor: pointer; }
+    .preview-content {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      font-size: 0.93rem;
+      margin-bottom: 1.2rem;
+      white-space: pre-line;
+    }
+    footer {
+        <script>
+    const STORE_URL = "https://selar.com";
+
+    const NOTES_CATALOG = [
+      {
+        subject: "Chemistry",
+        title: "Grade 10 Chemistry: Acids, Bases, Oxides + Salts Survival Guide",
+        author: "Notes by Stemora Academy",
+        price: "KES 50",
+        summary: "CBE/CBC Kenya edition: Water vs. Methylbenzene trap, HNO3 oxidizing trap, Z-A-L amphoteric oxides, salt preparation, plus 5-question self-test.",
+        preview: "FREE SAMPLE EXCERPT (NOTES BY STEMORA ACADEMY):\n• Golden Rule: All alkalis are bases, but NOT all bases are alkalis.\n• HCl in Methylbenzene: Dissolves as neutral molecules (NO H+ ions) -> Dry blue litmus stays BLUE!\n• Salt Preparation Trap: Never add PbCO3 directly to dilute H2SO4—react with dilute HNO3 first, then precipitate!",
+        buyLink: STORE_URL
+      },
+      {
+        subject: "Biology",
+        title: "Grade 10 Biology: Photosynthesis & Paper 3 Practicals Playbook",
+        author: "Notes by Stemora Academy",
+        price: "KES 100",
+        summary: "Light & Dark stage assembly line, chloroplast functions, 4-step starch test safety rules, and all 5 classic KNEC practical experiments.",
+        preview: "FREE SAMPLE EXCERPT (NOTES BY STEMORA ACADEMY):\n• Light Stage (Grana): Photolysis splits water into O2 (released), H atoms, and ATP.\n• Dark Stage (Stroma): Enzymes use ATP + H to fix CO2 into glucose.\n• Starch Test Safety: Boil leaf in ethanol inside a WATER BATH because ethanol is highly flammable.",
+        buyLink: STORE_URL
+      },
+      {
+        subject: "Physics",
+        title: "Radioactivity & Fleming's Left-Hand Rule Visual Pack",
+        author: "Notes by Stemora Academy",
+        price: "KES 100",
+        summary: "8 magnetic deflection diagrams (dots vs. crosses), penetrating power hierarchy, nuclear equations, and half-life shortcuts.",
+        preview: "FREE SAMPLE EXCERPT (NOTES BY STEMORA ACADEMY):\n• Crosses (x) = Magnetic field INTO page; Dots (•) = Magnetic field OUT toward your face.\n• Alpha (+2): Stopped by paper; bends gently.\n• Beta (-1): Stopped by 3mm aluminium; bends sharply & travels farther.\n• Gamma (0): Zero charge -> ZERO deflection in magnetic/electric fields.",
+        buyLink: STORE_URL
+      },
+      {
+        subject: "Mathematics",
+        title: "Rational vs. Irrational Numbers Visual Map",
+        author: "Notes by Stemora Academy",
+        price: "FREE",
+        summary: "Open-access 1-page visual guide to classifying recurring decimals, surds, and pi in under 5 seconds.",
+        preview: "FREE GUIDE (NOTES BY STEMORA ACADEMY):\n• Rational Numbers: Can be written as a fraction a/b (terminating & recurring decimals, exact square roots like √16 = 4).\n• Irrational Numbers: Non-terminating, non-recurring decimals (e.g., √2, √3, π).",
+        buyLink: STORE_URL
+      }
+    ];
+
+    const QUIZ_DATA = [
+      {
+        q: "1. Dry HCl gas is dissolved in methylbenzene and tested with DRY blue litmus paper. What happens?",
+        options: ["Turns red immediately", "Stays blue (no H+ ions formed)", "Bleaches white"],
+        answer: 1,
+        explanation: "Correct! Methylbenzene is non-polar, so HCl does not ionize into H+ ions. Dry blue litmus stays blue!"
+      },
+      {
+        q: "2. During a starch test, why must the green leaf be boiled in ethanol inside a WATER BATH?",
+        options: ["To soften the leaf veins", "Because ethanol is highly flammable", "To burst the starch grains"],
+        answer: 1,
+        explanation: "Spot on! Ethanol removes chlorophyll, and a water bath prevents the flammable ethanol vapor from catching fire."
+      },
+      {
+        q: "3. Why are gamma rays NOT deflected in a strong magnetic field?",
+        options: ["They travel too fast", "They have low ionizing power", "They carry zero electric charge"],
+        answer: 2,
+        explanation: "100%! Magnetic fields only exert force on moving electric charges. Gamma rays are electrically neutral (zero charge)."
+      }
+    ];
+
+    let activeSubject = "All";
+    let qIdx = 0;
+
+    function setSubject(subj, btn) {
+      activeSubject = subj;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderNotes();
+    }
+
+    function renderNotes() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const grid = document.getElementById("notesGrid");
+      grid.innerHTML = "";
+
+      const filtered = NOTES_CATALOG.filter(item => {
+        const matchesSubj = activeSubject === "All" || item.subject === activeSubject;
+        const matchesSearch = item.title.toLowerCase().includes(query) || item.summary.toLowerCase().includes(query) || item.subject.toLowerCase().includes(query);
+        return matchesSubj && matchesSearch;
+      });
+
+      filtered.forEach((item, index) => {
+        const isFree = item.price.toUpperCase() === "FREE";
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <span class="tag">${item.subject}</span>
+              <span class="price ${isFree ? "free" : ""}">${item.price}</span>
+            </div>
+            <h3>${item.title}</h3>
+            <div class="author-line">${item.author}</div>
+            <p>${item.summary}</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-outline" onclick="openPreview(${index})">Read Sample</button>
+            <a href="${item.buyLink}" target="_blank" class="btn btn-primary">${isFree ? "Visit Store" : "Buy (" + item.price + ")"}</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openPreview(idx) {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = NOTES_CATALOG.filter(item => (activeSubject === "All" || item.subject === activeSubject) && (item.title.toLowerCase().includes(query) || item.summary.toLowerCase().includes(query) || item.subject.toLowerCase().includes(query)));
+      const item = filtered[idx];
+      document.getElementById("modalTitle").textContent = item.title;
+      document.getElementById("modalBody").textContent = item.preview;
+      const buyBtn = document.getElementById("modalBuyBtn");
+      buyBtn.href = item.buyLink;
+      buyBtn.textContent = item.price.toUpperCase() === "FREE" ? "Open Stemora Academy Store" : `Unlock Full PDF (${item.price})`;
+      document.getElementById("previewModal").style.display = "flex";
+    }
+
+    function closeModal(e) {
+      if (e.target.id === "previewModal") document.getElementById("previewModal").style.display = "none";
+    }
+
+    function renderQuiz() {
+      const current = QUIZ_DATA[qIdx];
+      document.getElementById("quizQuestion").textContent = current.q;
+      const optsDiv = document.getElementById("quizOptions");
+      const fb = document.getElementById("quizFeedback");
+      fb.style.display = "none";
+      optsDiv.innerHTML = "";
+      current.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-opt";
+        btn.textContent = opt;
+        btn.onclick = () => {
+          fb.style.display = "block";
+          if (i === current.answer) {
+            fb.style.background = "rgba(16, 185, 129, 0.18)";
+            fb.style.color = "#34d399";
+            fb.textContent = "✅ " + current.explanation;
+          } else {
+            fb.style.background = "rgba(239, 68, 68, 0.18)";
+            fb.style.color = "#f87171";
+            fb.textContent = "❌ Trap caught you! " + current.explanation;
+          }
+        };
+        optsDiv.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      qIdx = (qIdx + 1) % QUIZ_DATA.length;
+      renderQuiz();
+    }
+
+    renderNotes();
+    renderQuiz();
+  </script>
+</body>
+</html>
+
