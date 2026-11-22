@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stemora — Visual STEM &amp; CBE/KCSE Exam-Trap Hub</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #141923;
+      --border: #263042;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --accent: #f59e0b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 14, 20, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--primary); }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--primary); }
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+    }
+    .btn-primary { background: var(--primary); color: #042f2e; }
+    .btn-primary:hover { background: var(--primary-dark); color: #fff; }
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-header h2 { font-size: 1.75rem; font-weight: 800; }
+    .section-header p { color: var(--muted); }
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .filter-btn {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #042f2e;
+      border-color: var(--primary);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+    .subject-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--muted);
+    }
+    .price-tag { font-size: 0.85rem; font-weight: 800; color: var(--accent); }
+    .price-tag.free { color: var(--primary); }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.4rem; }
+    .card .btn { width: 100%; text-align: center; }
+    .systems-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .system-item h4 { color: var(--primary); margin-bottom: 0.4rem; }
+    .system-item p { color: var(--muted); font-size: 0.9rem; }
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">STEM<span>ORA</span></a>
+      <nav>
+        <a href="#store">KES 50 Guides</a>
+        <a href="#free-notes">Free Notes</a>
+        <a href="#method">Study System</a>
+        <a href="#creator-hub">Sell Notes (Soon)</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="badge">Stemora Learning Platform &bull; Kenya</div>
+    <h1>Stop Memorizing Blindly.<br />Master Every STEM Exam Trap.</h1>
+    <p>
+      Visual YouTube breakdowns, free quick-revision sheets, and high-yield CBE &amp; KCSE PDF survival guides for just <strong>KES 50</strong> via WhatsApp M-Pesa.
+    </p>
+    <div class="hero-buttons">
+      <a href="#store" class="btn btn-primary">Get KES 50 Exam Guides</a>
+      <a href="https://youtube.com" target="_blank" class="btn btn-outline">Stemora on YouTube</a>
+    </div>
+  </div>
+
+  <section id="store">
+    <div class="section-header">
+      <div>
+        <h2>Stemora KES 50 Survival Guides</h2>
+        <p>Tap any guide to order directly on WhatsApp and pay KES 50 via M-Pesa.</p>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+        <button class="filter-btn" onclick="filterCards('chemistry', this)">Chemistry</button>
+        <button class="filter-btn" onclick="filterCards('biology', this)">Biology</button>
+        <button class="filter-btn" onclick="filterCards('physics', this)">Physics</button>
+      </div>
+    </div>
+
+    <div class="grid" id="cards-grid">
+      <div class="card" data-subject="chemistry">
+        <div>
+          <div class="tag-row">
+            <span class="subject-tag">Chemistry</span>
+            <span class="price-tag">KES 50</span>
+          </div>
+          <h3>Acids, Bases, Oxides &amp; Salts Survival Guide</h3>
+          <p>Water vs. Methylbenzene trap, HNO3 oxidizing trap, Z-A-L amphoteric oxides, pH colors, plus a 5-question KNEC self-test.</p>
+        </div>
+        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
+      </div>
+
+      <div class="card" data-subject="biology">
+        <div>
+          <div class="tag-row">
+            <span class="subject-tag">Biology</span>
+            <span class="price-tag">KES 50</span>
+          </div>
+          <h3>Photosynthesis &amp; KNEC Practicals Playbook</h3>
+          <p>Light &amp; Dark stage assembly line, chloroplast structure, 4-step starch test safety rules, and all 5 Paper 3 experiments.</p>
+        </div>
+        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
+      </div>
+
+      <div class="card" data-subject="physics">
+        <div>
+          <div class="tag-row">
+            <span class="subject-tag">Physics</span>
+            <span class="price-tag">KES 50</span>
+          </div>
+          <h3>Radioactivity &amp; Left-Hand Rule Visual Pack</h3>
+          <p>8 magnetic deflection diagrams (dots vs. crosses), penetrating power hierarchy, nuclear equations, and half-life shortcuts.</p>
+        </div>
+        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="free-notes">
+    <div class="section-header">
+      <div>
+        <h2>Free Community Revision Notes</h2>
+        <p>Open-access summary sheets to help every student level up.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="tag-row">
+            <span class="subject-tag">Chemistry</span>
+            <span class="price-tag free">FREE</span>
+          </div>
+          <h3>Reactivity Series &amp; Confirmatory Gas Tests</h3>
+          <p>The "Hungry" Hydrogen cutoff rule + burning splint, glowing splint, and limewater tests in one table.</p>
+        </div>
+        <a href="https://wa.me." target="_blank" class="btn btn-outline">Request Free PDF on WhatsApp</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="tag-row">
+            <span class="subject-tag">Mathematics</span>
+            <span class="price-tag free">FREE</span>
+          </div>
+          <h3>Rational vs. Irrational Numbers Visual Map</h3>
