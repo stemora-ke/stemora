@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stemora — Visual STEM &amp; CBE/KCSE Exam-Trap Hub</title>
+  <title>Stemora — Digital Study Library &amp; Exam-Trap Marketplace</title>
   <style>
     :root {
       --bg: #0b0e14;
       --surface: #141923;
+      --surface-alt: #1b2230;
       --border: #263042;
       --primary: #10b981;
       --primary-dark: #059669;
@@ -16,49 +17,49 @@
       --muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
+
+    /* Top Bar */
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(11, 14, 20, 0.92);
+      z-index: 40;
+      background: rgba(11, 14, 20, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-container {
-      max-width: 1100px;
+    .nav-wrap {
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 1rem;
+      flex-wrap: wrap;
     }
-    .logo {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--text);
-      text-decoration: none;
-    }
+    .logo { font-size: 1.45rem; font-weight: 800; color: var(--text); text-decoration: none; }
     .logo span { color: var(--primary); }
     nav a {
       color: var(--muted);
       text-decoration: none;
-      margin-left: 1.2rem;
+      margin-left: 1.25rem;
       font-size: 0.95rem;
       font-weight: 500;
     }
     nav a:hover { color: var(--primary); }
+
+    /* Hero + Live Search */
     .hero {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 4rem 1.5rem 3rem;
+      padding: 3.5rem 1.5rem 2.5rem;
       text-align: center;
     }
     .badge {
@@ -66,62 +67,42 @@
       background: rgba(16, 185, 129, 0.12);
       color: var(--primary);
       border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      font-weight: 800;
-      line-height: 1.15;
       margin-bottom: 1rem;
     }
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 2rem;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-    .hero-buttons {
+    .hero h1 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; line-height: 1.15; margin-bottom: 0.9rem; }
+    .hero p { max-width: 650px; margin: 0 auto 1.8rem; color: var(--muted); font-size: 1.05rem; }
+
+    .search-bar {
+      max-width: 560px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      font-size: 0.95rem;
-    }
-    .btn-primary { background: var(--primary); color: #042f2e; }
-    .btn-primary:hover { background: var(--primary-dark); color: #fff; }
-    .btn-outline {
+    .search-bar input {
+      flex: 1;
+      padding: 0.9rem 1.1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      border: 1px solid var(--border);
+      font-size: 0.98rem;
     }
-    section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-    }
-    .section-header {
+    .search-bar input:focus { outline: none; border-color: var(--primary); }
+
+    /* Library Section */
+    section { max-width: 1140px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    .toolbar {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 2rem;
+      align-items: center;
+      margin-bottom: 1.8rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .section-header h2 { font-size: 1.75rem; font-weight: 800; }
-    .section-header p { color: var(--muted); }
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .filter-btn {
       background: var(--surface);
@@ -138,9 +119,11 @@
       color: #042f2e;
       border-color: var(--primary);
     }
+
+    /* Note Cards */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
     }
     .card {
@@ -151,14 +134,16 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.15s, border-color 0.2s;
     }
-    .tag-row {
+    .card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .card-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.8rem;
     }
-    .subject-tag {
+    .tag {
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -167,26 +152,99 @@
       background: rgba(148, 163, 184, 0.12);
       color: var(--muted);
     }
-    .price-tag { font-size: 0.85rem; font-weight: 800; color: var(--accent); }
-    .price-tag.free { color: var(--primary); }
-    .card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
-    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.4rem; }
-    .card .btn { width: 100%; text-align: center; }
-    .systems-box {
+    .price { font-size: 0.92rem; font-weight: 800; color: var(--accent); }
+    .price.free { color: var(--primary); }
+    .card h3 { font-size: 1.18rem; margin-bottom: 0.5rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.2rem; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1.3fr; gap: 0.6rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .btn-primary { background: var(--primary); color: #042f2e; }
+    .btn-primary:hover { background: var(--primary-dark); color: #fff; }
+    .btn-outline { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--primary); }
+
+    /* Preview Popup Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 600px;
+      width: 100%;
+      padding: 1.8rem;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .preview-content {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      color: var(--text);
+      font-size: 0.92rem;
+      margin-bottom: 1.2rem;
+      white-space: pre-line;
+    }
+
+    /* Creator Section */
+    .panel {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 2rem;
+    }
+    .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      gap: 1rem;
+      margin-top: 1.2rem;
     }
-    .system-item h4 { color: var(--primary); margin-bottom: 0.4rem; }
-    .system-item p { color: var(--muted); font-size: 0.9rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    textarea { grid-column: 1 / -1; min-height: 90px; }
+
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
-      padding: 2.5rem 1.5rem;
+      padding: 2.2rem 1.5rem;
       color: var(--muted);
       font-size: 0.9rem;
       margin-top: 2rem;
@@ -196,107 +254,62 @@
 <body>
 
   <header>
-    <div class="nav-container">
+    <div class="nav-wrap">
       <a href="#" class="logo">STEM<span>ORA</span></a>
       <nav>
-        <a href="#store">KES 50 Guides</a>
-        <a href="#free-notes">Free Notes</a>
-        <a href="#method">Study System</a>
-        <a href="#creator-hub">Sell Notes (Soon)</a>
+        <a href="#library">Browse Notes</a>
+        <a href="#creator">Become a Creator</a>
       </nav>
     </div>
   </header>
 
   <div class="hero">
-    <div class="badge">Stemora Learning Platform &bull; Kenya</div>
-    <h1>Stop Memorizing Blindly.<br />Master Every STEM Exam Trap.</h1>
-    <p>
-      Visual YouTube breakdowns, free quick-revision sheets, and high-yield CBE &amp; KCSE PDF survival guides for just <strong>KES 50</strong> via WhatsApp M-Pesa.
-    </p>
-    <div class="hero-buttons">
-      <a href="#store" class="btn btn-primary">Get KES 50 Exam Guides</a>
-      <a href="https://youtube.com" target="_blank" class="btn btn-outline">Stemora on YouTube</a>
+    <div class="badge">Stemora Digital Study Library &bull; Kenya</div>
+    <h1>Read Sample Pages Free.<br />Unlock Full Exam Guides Instantly.</h1>
+    <p>Search verified CBE &amp; KCSE revision notes across any subject. Pay privately via M-Pesa and your PDF unlocks automatically 24/7.</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" onkeyup="renderNotes()" placeholder="Search topic (e.g., Acids, Radioactivity, Photosynthesis, Math)..." />
     </div>
   </div>
 
-  <section id="store">
-    <div class="section-header">
-      <div>
-        <h2>Stemora KES 50 Survival Guides</h2>
-        <p>Tap any guide to order directly on WhatsApp and pay KES 50 via M-Pesa.</p>
-      </div>
+  <section id="library">
+    <div class="toolbar">
       <div class="filters">
-        <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
-        <button class="filter-btn" onclick="filterCards('chemistry', this)">Chemistry</button>
-        <button class="filter-btn" onclick="filterCards('biology', this)">Biology</button>
-        <button class="filter-btn" onclick="filterCards('physics', this)">Physics</button>
+        <button class="filter-btn active" onclick="setSubject('All', this)">All Subjects</button>
+        <button class="filter-btn" onclick="setSubject('Chemistry', this)">Chemistry</button>
+        <button class="filter-btn" onclick="setSubject('Biology', this)">Biology</button>
+        <button class="filter-btn" onclick="setSubject('Physics', this)">Physics</button>
+        <button class="filter-btn" onclick="setSubject('Mathematics', this)">Mathematics</button>
       </div>
+      <span id="countLabel" style="color: var(--muted); font-size: 0.9rem;"></span>
     </div>
 
-    <div class="grid" id="cards-grid">
-      <div class="card" data-subject="chemistry">
-        <div>
-          <div class="tag-row">
-            <span class="subject-tag">Chemistry</span>
-            <span class="price-tag">KES 50</span>
-          </div>
-          <h3>Acids, Bases, Oxides &amp; Salts Survival Guide</h3>
-          <p>Water vs. Methylbenzene trap, HNO3 oxidizing trap, Z-A-L amphoteric oxides, pH colors, plus a 5-question KNEC self-test.</p>
-        </div>
-        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
-      </div>
+    <div class="grid" id="notesGrid"></div>
+  </section>
 
-      <div class="card" data-subject="biology">
-        <div>
-          <div class="tag-row">
-            <span class="subject-tag">Biology</span>
-            <span class="price-tag">KES 50</span>
-          </div>
-          <h3>Photosynthesis &amp; KNEC Practicals Playbook</h3>
-          <p>Light &amp; Dark stage assembly line, chloroplast structure, 4-step starch test safety rules, and all 5 Paper 3 experiments.</p>
-        </div>
-        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
-      </div>
-
-      <div class="card" data-subject="physics">
-        <div>
-          <div class="tag-row">
-            <span class="subject-tag">Physics</span>
-            <span class="price-tag">KES 50</span>
-          </div>
-          <h3>Radioactivity &amp; Left-Hand Rule Visual Pack</h3>
-          <p>8 magnetic deflection diagrams (dots vs. crosses), penetrating power hierarchy, nuclear equations, and half-life shortcuts.</p>
-        </div>
-        <a href="https://wa.me." target="_blank" class="btn btn-primary">Order on WhatsApp (KES 50)</a>
-      </div>
+  <!-- Creator Sign-Up -->
+  <section id="creator">
+    <div class="panel">
+      <span class="badge">Earn From Your Notes</span>
+      <h2 style="margin-bottom: 0.4rem;">Publish &amp; Sell Your Notes on Stemora</h2>
+      <p style="color: var(--muted);">Have neat summary notes? Submit them below. Once approved, we list them on Stemora with automatic M-Pesa checkout and share revenue with you on every sale.</p>
+      <form class="form-grid" action="#" method="POST" onsubmit="handleCreator(event)">
+        <input type="text" name="name" placeholder="Your Full Name or Alias" required />
+        <input type="email" name="email" placeholder="Your Email Address" required />
+        <select name="subject" required>
+          <option value="">Select Subject</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Physics">Physics</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Other">Other Subject</option>
+        </select>
+        <input type="url" name="link" placeholder="Google Drive link to your notes" required />
+        <textarea name="details" placeholder="Topics covered &amp; suggested price (e.g., KES 50 or KES 100)..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="grid-column: 1 / -1;">Apply to Sell Notes on Stemora</button>
+      </form>
     </div>
   </section>
 
-  <section id="free-notes">
-    <div class="section-header">
-      <div>
-        <h2>Free Community Revision Notes</h2>
-        <p>Open-access summary sheets to help every student level up.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div>
-          <div class="tag-row">
-            <span class="subject-tag">Chemistry</span>
-            <span class="price-tag free">FREE</span>
-          </div>
-          <h3>Reactivity Series &amp; Confirmatory Gas Tests</h3>
-          <p>The "Hungry" Hydrogen cutoff rule + burning splint, glowing splint, and limewater tests in one table.</p>
-        </div>
-        <a href="https://wa.me." target="_blank" class="btn btn-outline">Request Free PDF on WhatsApp</a>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="tag-row">
-            <span class="subject-tag">Mathematics</span>
-            <span class="price-tag free">FREE</span>
-          </div>
-          <h3>Rational vs. Irrational Numbers Visual Map</h3>
+  <!-- Free Sample Preview Modal -->
+  <div class="modal-backdrop" id="previewModal" onclick="closeModal(event)">
