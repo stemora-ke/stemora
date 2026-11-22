@@ -1,167 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stemora Academy — Grade 10 CBC / CBE STEM Hub</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23070a0f' stroke='%2310b981' stroke-width='5'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='35' font-weight='bold' fill='%2310b981' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
-  <style>
-    :root { --bg:#070a0f; --card:#111827; --border:#243046; --green:#10b981; --gold:#f59e0b; --text:#f8fafc; --muted:#94a3b8; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    .ribbon { height:5px; background:linear-gradient(90deg,#000 32%,#fff 33%,#b00 34%,#b00 66%,#fff 67%,#060 68%); }
-    header { position:sticky; top:0; background:rgba(7,10,15,.95); border-bottom:1px solid var(--border); padding:1rem 1.5rem; z-index:20; }
-    .wrap { max-width:1100px; margin:0 auto; }
-    .nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-    .brand { display:flex; align-items:center; gap:.6rem; color:var(--text); text-decoration:none; font-weight:900; font-size:1.3rem; }
-    .dot { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#10b981,#f59e0b,#ef4444); display:grid; place-items:center; color:#000; font-weight:900; }
-    nav a { color:var(--muted); text-decoration:none; margin-left:1.2rem; font-weight:600; font-size:.9rem; }
-    .hero { text-align:center; padding:3.5rem 1.5rem 2.5rem; }
-    .pill { display:inline-block; background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.4); padding:.3rem .9rem; border-radius:99px; font-size:.82rem; font-weight:700; margin-bottom:1rem; }
-    h1 { font-size:clamp(2rem,4vw,3.1rem); font-weight:900; line-height:1.15; margin-bottom:.9rem; }
-    h1 span { color:var(--green); }
-    .hero p { max-width:640px; margin:0 auto 1.6rem; color:var(--muted); }
-    .btns { display:flex; justify-content:center; gap:.8rem; flex-wrap:wrap; margin-bottom:1.6rem; }
-    .btn { display:inline-block; padding:.75rem 1.2rem; border-radius:8px; font-weight:700; text-decoration:none; border:none; cursor:pointer; font-size:.9rem; text-align:center; }
-    .btn-g { background:var(--green); color:#042f2e; }
-    .btn-o { background:#1e293b; color:var(--text); border:1px solid var(--border); }
-    .search { width:100%; max-width:540px; padding:.9rem 1.1rem; border-radius:10px; border:1px solid var(--border); background:var(--card); color:var(--text); font-size:1rem; }
-    section { padding:2.5rem 1.5rem; }
-    .bar { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; }
-    .tabs { display:flex; gap:.4rem; flex-wrap:wrap; }
-    .tab { background:var(--card); color:var(--muted); border:1px solid var(--border); padding:.45rem .9rem; border-radius:7px; cursor:pointer; font-weight:700; }
-    .tab.on { background:var(--green); color:#042f2e; border-color:var(--green); }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.3rem; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.4rem; display:flex; flex-direction:column; justify-content:space-between; }
-    .top { display:flex; justify-content:space-between; margin-bottom:.7rem; font-size:.8rem; font-weight:800; }
-    .tag { color:#34d399; text-transform:uppercase; }
-    .price { color:var(--gold); }
-    .card h3 { font-size:1.12rem; margin-bottom:.3rem; }
-    .by { font-size:.78rem; color:#34d399; font-weight:700; margin-bottom:.6rem; }
-    .card p { color:var(--muted); font-size:.9rem; margin-bottom:1.2rem; }
-    .acts { display:grid; grid-template-columns:1fr 1.3fr; gap:.6rem; }
-    .box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.8rem; }
-    .q-opt { display:block; width:100%; text-align:left; padding:.8rem; margin:.5rem 0; border-radius:8px; background:#0b1120; border:1px solid var(--border); color:var(--text); cursor:pointer; font-weight:600; }
-    .fb { padding:.8rem; border-radius:8px; margin:.8rem 0; display:none; font-size:.9rem; }
-    form { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.9rem; margin-top:1rem; }
-    input,select,textarea { width:100%; padding:.8rem; border-radius:8px; border:1px solid var(--border); background:#0b1120; color:var(--text); }
-    textarea { grid-column:1/-1; min-height:85px; }
-    .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:50; align-items:center; justify-content:center; padding:1rem; }
-    .m-box { background:var(--card); border:1px solid var(--green); border-radius:14px; max-width:560px; width:100%; padding:1.5rem; }
-    .pre { background:#070a0f; border:1px solid var(--border); padding:1rem; border-radius:8px; margin:1rem 0; white-space:pre-line; font-size:.9rem; }
-    footer { text-align:center; padding:2rem; color:var(--muted); border-top:1px solid var(--border); font-size:.88rem; }
-  </style></head><body>
-  <div class="ribbon"></div>
-  <header><div class="wrap nav">
-    <a href="#" class="brand"><div class="dot">S</div><span>STEMORA <span style="color:var(--green)">ACADEMY</span></span></a>
-    <nav><a href="#guides">CBC/CBE Guides</a><a href="#quiz">Trap Quiz</a><a href="#earn">Earn With Us</a></nav>
-  </div></header>
-
-  <div class="wrap hero">
-    <div class="pill">🇰🇪 Kenya Senior School (Grade 10–12) &bull; CBC / CBE Hub</div>
-    <h1>Master Every <span>CBC &amp; CBE</span> STEM Trap.<br>Learn Visually. Score Higher.</h1>
-    <p>Interactive exam-trap drills and instant-download Grade 10 study playbooks by <strong>Stemora Academy</strong>—unlocked 24/7 via M-Pesa.</p>
-    <div class="btns">
-      <a href="https://selar.com" target="_blank" class="btn btn-g">Open Stemora Academy Store</a>
-      <a href="#quiz" class="btn btn-o">Take Live Trap Quiz</a>
-    </div>
-    <input class="search" id="q" onkeyup="draw()" placeholder="Search Grade 10 topic (Acids, Salts, Photosynthesis, Radioactivity)..." />
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Stemora Academy — Kenya's Grade 9–12 CBC / CBE Study Arena</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23060b19' stroke='%2338bdf8' stroke-width='5'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='35' font-weight='bold' fill='%2338bdf8' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E"/>
+<style>
+:root{--bg:#060b19;--card:#0f172a;--border:#1e293b;--accent:#2563eb;--glow:#38bdf8;--text:#f8fafc;--muted:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s}
+.ke{height:5px;background:linear-gradient(90deg,#000 32%,#fff 33%,#b00 34%,#b00 66%,#fff 67%,#060 68%)}
+header{position:sticky;top:0;background:rgba(6,11,25,.95);border-bottom:1px solid var(--border);padding:.9rem 1.2rem;z-index:30}
+.wrap{max-width:1120px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.brand{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;font-weight:900;font-size:1.25rem}
+.orb{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#38bdf8,#10b981);display:grid;place-items:center;color:#060b19;font-weight:900}
+.dims{display:flex;gap:.45rem;flex-wrap:wrap}
+.d-btn{background:var(--card);color:var(--muted);border:1px solid var(--border);padding:.5rem .9rem;border-radius:9px;cursor:pointer;font-weight:700;font-size:.84rem;transition:.2s}
+.d-btn.on{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 18px rgba(56,189,248,.35)}
+.dim{display:none;padding:2rem 1.2rem;min-height:82vh}.dim.on{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.1rem}
+.btn{padding:.68rem 1.1rem;border-radius:9px;border:none;font-weight:700;cursor:pointer;font-size:.88rem;text-decoration:none;display:inline-block;text-align:center}
+.btn-p{background:var(--accent);color:#fff}.btn-o{background:#1e293b;color:#fff;border:1px solid var(--border)}
+.pill{display:inline-block;padding:.25rem .75rem;border-radius:99px;font-size:.78rem;font-weight:700;background:rgba(56,189,248,.15);color:#38bdf8;margin-bottom:.6rem}
+.t-arena{border-radius:16px;padding:2rem;text-align:center;background-size:cover;background-position:center;border:2px solid var(--accent);position:relative;overflow:hidden}
+.t-glass{background:rgba(6,11,25,.82);backdrop-filter:blur(8px);padding:1.6rem;border-radius:12px;max-width:540px;margin:0 auto}
+.clock{font-size:clamp(3rem,8vw,4.6rem);font-weight:900;letter-spacing:2px;color:#38bdf8;margin:.4rem 0}
+.bdg{padding:.7rem;border-radius:10px;border:1px solid var(--border);background:#090f20;font-size:.82rem;opacity:.45}
+.bdg.got{opacity:1;border-color:#10b981;background:rgba(16,185,129,.12)}
+.lb-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem .9rem;border-bottom:1px solid var(--border);font-size:.9rem}
+input,select,textarea{width:100%;padding:.75rem;border-radius:8px;border:1px solid var(--border);background:#090f20;color:#fff;margin-bottom:.7rem}
+</style></head><body>
+<div class="ke"></div>
+<header><div class="wrap top">
+  <a href="#" class="brand"><div class="orb">S</div><span>STEMORA <span style="color:#38bdf8">ACADEMY</span></span></a>
+  <div class="dims">
+    <button class="d-btn on" onclick="goDim(0,this)">⏱️ Solo Study</button>
+    <button class="d-btn" onclick="goDim(1,this)">🏆 Leaderboard</button>
+    <button class="d-btn" onclick="goDim(2,this)">📚 Notes &amp; Videos</button>
+    <button class="d-btn" onclick="goDim(3,this)">📝 CBE Assessments</button>
+    <button class="d-btn" onclick="goDim(4,this)">🤝 Tutors &amp; Earn</button>
   </div>
+</div></header>
 
-  <section id="guides" class="wrap">
-    <div class="bar">
-      <h2>Grade 10 CBC / CBE Survival Guides</h2>
-      <div class="tabs">
-        <button class="tab on" onclick="filt('All',this)">All</button>
-        <button class="tab" onclick="filt('Chemistry',this)">Chemistry</button>
-        <button class="tab" onclick="filt('Biology',this)">Biology</button>
-        <button class="tab" onclick="filt('Physics',this)">Physics</button>
-        <button class="tab" onclick="filt('Mathematics',this)">Math</button>
+<div id="d0" class="dim on wrap">
+  <div id="tRoom" class="t-arena" style="background-image:url('https://unsplash.com')">
+    <div class="t-glass">
+      <div class="pill" id="quoteBox">💡 "Success is the sum of small efforts repeated day in and day out."</div>
+      <h2 id="userGreeting">Grade 9–12 Solo Prep Arena</h2>
+      <div class="clock" id="clock">25:00</div>
+      <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem">
+        <button class="btn btn-p" onclick="startT()">▶ Start Focus</button>
+        <button class="btn btn-o" onclick="pauseT()">⏸ Pause</button>
+        <button class="btn btn-o" onclick="setMins(25)">25m</button>
+        <button class="btn btn-o" onclick="setMins(50)">50m</button>
+      </div>
+      <select id="wallPick" onchange="setWall(this.value)">
+        <option value="https://unsplash.com">🌌 Midnight Starry Peaks</option>
+        <option value="https://unsplash.com">📚 Classic Library Desk</option>
+        <option value="https://unsplash.com">🌊 Calm Coastal Horizon</option>
+        <option value="custom">🔗 Custom Image URL...</option>
+      </select>
+      <input id="customWall" style="display:none" placeholder="Paste any wallpaper image URL & press Enter" onchange="setWall(this.value)"/>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.2rem">
+    <h3>🏅 Your Unlockable Scholar Badges (<span id="myMins">0</span> mins logged)</h3>
+    <div id="bdgGrid" class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))"></div></div>
+</div>
+
+<div id="d1" class="dim wrap">
+  <div class="grid">
+    <div class="card">
+      <div class="pill">🎓 Stemora Classroom Account</div>
+      <h3>Sign In With Gmail to Join the Leaderboard</h3>
+      <p style="color:var(--muted);font-size:.88rem;margin:.4rem 0 .9rem">Track your Grade 9–12 daily, weekly &amp; monthly study hours and unlock badges.</p>
+      <input id="sName" placeholder="Your Full Name or Student Alias"/>
+      <input id="sMail" type="email" placeholder="Your Gmail Address (e.g., student@gmail.com)"/>
+      <button class="btn btn-p" style="width:100%" onclick="signInStudent()">Sign In &amp; Sync Hours</button>
+    </div>
+    <div class="card">
+      <div class="pill">📊 Live Classroom Pulse</div>
+      <h3>Active Learners: <span id="userCount" style="color:#10b981">148</span> Students</h3>
+      <p style="color:var(--muted);font-size:.88rem;margin:.4rem 0 1rem">Total Classroom Study Time: <strong id="totalHrs" style="color:#38bdf8">1,420 hrs</strong></p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="btn btn-p" onclick="renderLB('Daily')">Daily Top</button>
+        <button class="btn btn-o" onclick="renderLB('Weekly')">Weekly Top</button>
+        <button class="btn btn-o" onclick="renderLB('Monthly')">Monthly Top</button>
       </div>
     </div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <section id="quiz" class="wrap">
-    <div class="box" style="border-color:var(--green)">
-      <div class="pill">⚡ Interactive Grade 10 Exam-Trap Drill</div>
-      <h3 id="qq" style="margin:.5rem 0 1rem"></h3>
-      <div id="qo"></div>
-      <div class="fb" id="qf"></div>
-      <button class="btn btn-o" onclick="nq()">Next Question &rarr;</button>
+  </div>
+  <div class="card"><h3>🏆 Live Student Rankings (<span id="lbPeriod">Daily</span>)</h3><div id="lbList"></div></div></div>
+<div id="d2" class="dim wrap">
+  <div class="card">
+    <div class="pill" style="background:rgba(16,185,129,.15);color:#10b981">📚 Open-Access Grade 9–12 CBC / CBE Library</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
+      <h2>Free Study Notes, Formulas &amp; Video Lessons</h2>
+      <a href="https://selar.com" target="_blank" class="btn btn-p" style="background:#10b981;color:#042f2e">📥 Offline PDF Mega-Bundle (KES 100)</a>
     </div>
-  </section>
-
-  <section id="earn" class="wrap">
-    <div class="box">
-      <div class="pill">Stemora Academy Creator Program</div>
-      <h2>Publish Your Notes &amp; Earn 75% Per Sale</h2>
-      <p style="color:var(--muted);margin-top:.3rem">Submit your neat Grade 10 or KCSE notes below. Once verified, we publish them under Stemora Academy with automatic M-Pesa checkout.</p>
-      <form action="https://formspree.io" method="POST">
-        <input name="name" placeholder="Your Name or Alias" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <select name="subject" required>
-          <option value="">Select Subject</option>
-          <option>Grade 10 Chemistry</option><option>Grade 10 Biology</option>
-          <option>Grade 10 Physics</option><option>Core Mathematics</option>
-        </select>
-        <input type="url" name="link" placeholder="Google Drive link to PDF" required />
-        <textarea name="details" placeholder="Topics covered & suggested price (e.g., KES 50 or KES 100)..." required></textarea>
-        <button type="submit" class="btn btn-g" style="grid-column:1/-1">Submit Notes to Stemora Academy</button>
-      </form>
-    </div>
-      </section>
-
-  <div class="modal" id="mod" onclick="if(event.target.id==='mod')this.style.display='none'">
-    <div class="m-box">
-      <h3 id="mt"></h3>
-      <div class="pre" id="mb"></div>
-      <a href="https://selar.com" target="_blank" class="btn btn-g" style="width:100%">Unlock Full PDF on Stemora Store</a>
+    <div style="position:relative;margin-top:1rem">
+      <input id="qBox" onkeyup="drawNotes()" placeholder="🔍 Search Grade 9–12 topic, formula, or subject (e.g., Acids, Salts, Photosynthesis, Radioactivity, Algebra)..." style="padding-left:1rem;margin:0"/>
     </div>
   </div>
+  <div id="noteGrid" class="grid"></div></div>
+<div id="d3" class="dim wrap">
+  <div class="grid">
+    <div class="card" style="border-color:#8b5cf6">
+      <div class="pill" style="background:rgba(139,92,246,.18);color:#c4b5fd">📝 Grade 9–12 CBE Assessment &amp; Trap Drill</div>
+      <h3 id="qText" style="margin:.5rem 0"></h3>
+      <div id="qOpts"></div>
+      <div id="qFb" style="display:none;padding:.7rem;border-radius:8px;margin:.7rem 0;font-size:.88rem"></div>
+      <button class="btn btn-p" style="background:#8b5cf6" onclick="nextQ()">Next CBE Question &rarr;</button>
+    </div>
+    <div class="card" style="border-color:#f59e0b">
+      <div class="pill" style="background:rgba(245,158,11,.18);color:#fcd34d">🧠 Active Recall &amp; Blurting Scratchpad</div>
+      <p style="font-size:.86rem;color:var(--muted);margin-bottom:.6rem">Pick a Grade 9–12 topic, close your book, and type everything you remember from memory before checking notes:</p>
+      <textarea id="blurtBox" rows="5" placeholder="Write your brain-dump here (definitions, equations, practical steps)..."></textarea>
+      <button class="btn btn-o" onclick="document.getElementById('blurtBox').value=''">Clear Scratchpad</button>
+    </div>
+  </div>
+</div>
 
-  <footer>&copy; 2026 Stemora Academy &bull; Built in Kenya for CBC / CBE &amp; KCSE Learners.</footer>
+<div id="d4" class="dim wrap">
+  <div class="card" style="border-color:#f43f5e">
+    <div class="pill" style="background:rgba(244,63,94,.18);color:#fda4af">🤝 Stemora Peer Tutors, Note Creators &amp; Q&amp;A Hub</div>
+    <h2>Apply to Tutor Peers, Sell Notes (75% Share) or Ask a Question</h2>
+    <form action="https://formspree.io" method="POST" style="margin-top:1rem">
+      <input name="name" placeholder="Your Full Name or Student Alias" required/>
+      <input type="email" name="email" placeholder="Your Gmail Address" required/>
+      <select name="role" required><option value="">Select Role / Action</option><option>Apply as Grade 9–12 Peer Tutor</option><option>Publish Study Notes (Earn 75%)</option><option>Ask a Tough CBC / CBE Question</option></select>
+      <input name="grade_subject" placeholder="Grade (9–12) & Subject (e.g., Grade 10 Chemistry)"/>
+      <textarea name="message" rows="3" placeholder="Paste Google Drive link to notes, or write your tutoring pitch / question..." required></textarea>
+      <button type="submit" class="btn btn-p" style="width:100%;background:#f43f5e">Submit to Stemora Academy</button>
+    </form>
+  </div>
+</div>
 
-  <script>
-    const STORE="https://selar.com";
-    const DATA=[
-      {s:"Chemistry",t:"Grade 10 Chemistry: Acids, Bases, Oxides + Salts Guide",p:"KES 50",d:"CBE/CBC Kenya edition: Water vs. Methylbenzene trap, HNO3 oxidizing trap, Z-A-L oxides, salt preparation & quiz.",pre:"SAMPLE:\n• All alkalis are bases, NOT all bases are alkalis.\n• HCl in Methylbenzene: No H+ ions -> Dry blue litmus stays BLUE!\n• Salt Trap: React PbCO3 with dilute HNO3 first, then precipitate with H2SO4."},
-      {s:"Biology",t:"Grade 10 Biology: Photosynthesis & Paper 3 Practicals",p:"KES 100",d:"Light & Dark stage assembly line, chloroplast structure, 4-step starch test safety rules & all 5 KNEC experiments.",pre:"SAMPLE:\n• Light Stage (Grana): Photolysis splits water into O2, H & ATP.\n• Dark Stage (Stroma): Enzymes fix CO2 into glucose.\n• Starch Test: Boil leaf in ethanol inside a WATER BATH (flammable!)."},
-      {s:"Physics",t:"Radioactivity & Fleming's Left-Hand Rule Visual Pack",p:"KES 100",d:"Magnetic deflection rules (dots vs. crosses), penetrating power hierarchy, nuclear equations & half-life shortcuts.",pre:"SAMPLE:\n• Crosses (x) = Field INTO page; Dots (•) = Field OUT.\n• Gamma (0): Zero charge -> ZERO deflection in magnetic/electric fields."},
-      {s:"Mathematics",t:"Rational vs. Irrational Numbers Visual Map",p:"FREE",d:"Classify recurring decimals, surds, and pi in under 5 seconds without a calculator.",pre:"FREE GUIDE:\n• Rational: Expressible as fraction a/b (e.g., 0.333..., √16).\n• Irrational: Non-terminating, non-recurring (e.g., √2, π)."}
-    ];
-        const QUIZ=[
-      {q:"1. Dry HCl in methylbenzene is tested with DRY blue litmus. Result?",o:["Turns red","Stays blue (no H+ ions)","Bleaches white"],a:1,e:"Methylbenzene is non-polar—no H+ ions form, so dry blue litmus stays blue!"},
-      {q:"2. Why boil a leaf in ethanol inside a WATER BATH during a starch test?",o:["Soften veins","Ethanol is highly flammable","Burst starch grains"],a:1,e:"Ethanol vapor catches fire easily near a Bunsen flame!"},
-      {q:"3. Why are gamma rays NOT deflected in a magnetic field?",o:["Too fast","Low ionization","Zero electric charge"],a:2,e:"Magnetic fields only deflect moving electric charges; gamma is neutral."}
-    ];
-    let sub="All", qi=0;
-    function filt(s,b){ sub=s; document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on")); b.classList.add("on"); draw(); }
-    function draw(){
-      const v=document.getElementById("q").value.toLowerCase(), g=document.getElementById("grid"); g.innerHTML="";
-      DATA.filter(x=>(sub==="All"||x.s===sub)&&(x.t.toLowerCase().includes(v)||x.d.toLowerCase().includes(v))).forEach(x=>{
-        g.innerHTML+=`<div class="card"><div><div class="top"><span class="tag">${x.s}</span><span class="price">${x.p}</span></div><h3>${x.t}</h3><div class="by">Notes by Stemora Academy</div><p>${x.d}</p></div><div class="acts"><button class="btn btn-o" onclick="prev('${x.t.replace(/'/g,"")}')">Sample</button><a href="${STORE}" target="_blank" class="btn btn-g">${x.p==="FREE"?"Open Store":"Buy ("+x.p+")"}</a></div></div>`;
-      });
-    }
-    function prev(title){
-      const x=DATA.find(i=>i.t.replace(/'/g,"")===title);
-      document.getElementById("mt").textContent=x.t; document.getElementById("mb").textContent=x.pre;
-      document.getElementById("mod").style.display="flex";
-    }
-    function loadQ(){
-      const c=QUIZ[qi], f=document.getElementById("qf"), o=document.getElementById("qo");
-      document.getElementById("qq").textContent=c.q; f.style.display="none"; o.innerHTML="";
-      c.o.forEach((txt,i)=>{
-        const b=document.createElement("button"); b.className="q-opt"; b.textContent=txt;
-        b.onclick=()=>{ f.style.display="block"; f.style.background=i===c.a?"rgba(16,185,129,.2)":"rgba(239,68,68,.2)"; f.textContent=(i===c.a?"✅ ":"❌ ")+c.e; };
-        o.appendChild(b);
-      });
-    }
-    function nq(){ qi=(qi+1)%QUIZ.length; loadQ(); }
-    draw(); loadQ();
-  </script>
-</body>
-</html>
+<div class="card" id="readerModal" style="display:none;position:fixed;inset:5% auto auto 50%;transform:translateX(-50%);width:92%;max-width:620px;z-index:50;border:2px solid #38bdf8;box-shadow:0 0 40px #000"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="rTitle"></h3><button class="btn btn-o" onclick="this.parentElement.parentElement.style.display='none'">✕</button></div><pre id="rBody" style="white-space:pre-wrap;font-family:inherit;margin:1rem 0;color:#e2e8f0;font-size:.9rem;max-height:55vh;overflow:auto"></pre><a id="rVid" href="https://youtube.com" target="_blank" class="btn btn-p" style="width:100%">📺 Watch Video Lesson on Stemora YouTube</a></div>
+<div id="d3" class="dim wrap">
+  <div class="grid">
+    <div class="card" style="border-color:#8b5cf6">
+      <div class="pill" style="background:rgba(139,92,246,.18);color:#c4b5fd">📝 Grade 9–12 CBE Assessment &amp; Trap Drill</div>
+      <h3 id="qText" style="margin:.5rem 0"></h3>
+      <div id="qOpts"></div>
+      <div id="qFb" style="display:none;padding:.7rem;border-radius:8px;margin:.7rem 0;font-size:.88rem"></div>
+      <button class="btn btn-p" style="background:#8b5cf6" onclick="nextQ()">Next CBE Question &rarr;</button>
+    </div>
+    <div class="card" style="border-color:#f59e0b">
+      <div class="pill" style="background:rgba(245,158,11,.18);color:#fcd34d">🧠 Active Recall &amp; Blurting Scratchpad</div>
+      <p style="font-size:.86rem;color:var(--muted);margin-bottom:.6rem">Pick a Grade 9–12 topic, close your book, and type everything you remember from memory before checking notes:</p>
+      <textarea id="blurtBox" rows="5" placeholder="Write your brain-dump here (definitions, equations, practical steps)..."></textarea>
+      <button class="btn btn-o" onclick="document.getElementById('blurtBox').value=''">Clear Scratchpad</button>
+    </div>
+  </div>
+</div>
 
-    
+<div id="d4" class="dim wrap">
+  <div class="card" style="border-color:#f43f5e">
+    <div class="pill" style="background:rgba(244,63,94,.18);color:#fda4af">🤝 Stemora Peer Tutors, Note Creators &amp; Q&amp;A Hub</div>
+    <h2>Apply to Tutor Peers, Sell Notes (75% Share) or Ask a Question</h2>
+    <form action="https://formspree.io" method="POST" style="margin-top:1rem">
+      <input name="name" placeholder="Your Full Name or Student Alias" required/>
+      <input type="email" name="email" placeholder="Your Gmail Address" required/>
+      <select name="role" required><option value="">Select Role / Action</option><option>Apply as Grade 9–12 Peer Tutor</option><option>Publish Study Notes (Earn 75%)</option><option>Ask a Tough CBC / CBE Question</option></select>
+      <input name="grade_subject" placeholder="Grade (9–12) & Subject (e.g., Grade 10 Chemistry)"/>
+      <textarea name="message" rows="3" placeholder="Paste Google Drive link to notes, or write your tutoring pitch / question..." required></textarea>
+      <button type="submit" class="btn btn-p" style="width:100%;background:#f43f5e">Submit to Stemora Academy</button>
+    </form>
+  </div>
+</div>
 
+<div class="card" id="readerModal" style="display:none;position:fixed;inset:5% auto auto 50%;transform:translateX(-50%);width:92%;max-width:620px;z-index:50;border:2px solid #38bdf8;box-shadow:0 0 40px #000"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="rTitle"></h3><button class="btn btn-o" onclick="this.parentElement.parentElement.style.display='none'">✕</button></div><pre id="rBody" style="white-space:pre-wrap;font-family:inherit;margin:1rem 0;color:#e2e8f0;font-size:.9rem;max-height:55vh;overflow:auto"></pre><a id="rVid" href="https://youtube.com" target="_blank" class="btn btn-p" style="width:100%">📺 Watch Video Lesson on Stemora YouTube</a></div>
+<footer style="text-align:center;padding:1.8rem;color:var(--muted);border-top:1px solid var(--border);font-size:.85rem">&copy; 2026 Stemora Academy &bull; Kenya's Grade 9–12 CBC / CBE Study Arena.</footer>
+<script>
+const QUOTES=[
+  '💡 "Bidii hulipa — small daily prep sessions build national top scorers."',
+  '💡 "Do not watch the clock; do what it does. Keep going!"',
+  '💡 "Every Grade 10 concept mastered today is an easy mark in Grade 12."',
+  '💡 "Elimu ni ufunguo — consistency beats last-minute cramming every time."'
+];
+const BADGES=[
+  {m:1,t:"🌱 Mwanzo Sharp (First Session)"},
+  {m:25,t:"⚡ Pomodoro Sprinter (25m)"},
+  {m:60,t:"🔋 Blackout-Proof Scholar (1 hr)"},
+  {m:180,t:"🔥 Night Owl Grinder (3 hrs)"},
+  {m:420,t:"🦁 Simba wa Revision (7 hrs)"},
+  {m:900,t:"👑 Stemora Bingwa (15 hrs)"}
+];
+const NOTES=[
+  {sub:"Grade 10 Chemistry",col:"#06b6d4",title:"Acids, Bases, Oxides + Salts Survival Guide",body:"• Acid: Ionizes in water to produce H+ ions as the only positive ions.\n• Base: Reacts with an acid to form salt and water ONLY.\n• Solvent Trap: HCl in methylbenzene does NOT ionize -> dry blue litmus stays BLUE!\n• Amphoteric Oxides (Z-A-L): ZnO, Al2O3, PbO react with both acids & alkalis.\n• Salt Trap: React PbCO3 with dilute HNO3 first, then precipitate with H2SO4."},
+  {sub:"Grade 10 Biology",col:"#10b981",title:"Photosynthesis & Practical Safety Playbook",body:"• Light Stage (Grana): Photolysis splits water into O2, H atoms & ATP.\n• Dark Stage (Stroma): Enzymes use ATP + H to fix CO2 into glucose.\n• Starch Test Safety: Boil leaf in ethanol inside a WATER BATH (ethanol is flammable)."},
+  {sub:"Grade 10 Physics",col:"#8b5cf6",title:"Radioactivity & Magnetic Deflection Guide",body:"• Alpha (+2): Stopped by paper; bends gently.\n• Beta (-1): Stopped by 3mm aluminium; bends sharply.\n• Gamma (0): Zero charge -> ZERO deflection in magnetic/electric fields."},
+  {sub:"Grade 9–12 Math",col:"#f59e0b",title:"Rational vs. Irrational Numbers Map",body:"• Rational: Expressible as fraction a/b (terminating & recurring decimals, √16 = 4).\n• Irrational: Non-terminating, non-recurring decimals (√2, √3, π)."}
+];
+<footer style="text-align:center;padding:1.8rem;color:var(--muted);border-top:1px solid var(--border);font-size:.85rem">&copy; 2026 Stemora Academy &bull; Kenya's Grade 9–12 CBC / CBE Study Arena.</footer>
+<script>
+const QUOTES=[
+  '💡 "Bidii hulipa — small daily prep sessions build national top scorers."',
+  '💡 "Do not watch the clock; do what it does. Keep going!"',
+  '💡 "Every Grade 10 concept mastered today is an easy mark in Grade 12."',
+  '💡 "Elimu ni ufunguo — consistency beats last-minute cramming every time."'
+];
+const BADGES=[
+  {m:1,t:"🌱 Mwanzo Sharp (First Session)"},
+  {m:25,t:"⚡ Pomodoro Sprinter (25m)"},
+  {m:60,t:"🔋 Blackout-Proof Scholar (1 hr)"},
+  {m:180,t:"🔥 Night Owl Grinder (3 hrs)"},
+  {m:420,t:"🦁 Simba wa Revision (7 hrs)"},
+  {m:900,t:"👑 Stemora Bingwa (15 hrs)"}
+];
+const NOTES=[
+  {sub:"Grade 10 Chemistry",col:"#06b6d4",title:"Acids, Bases, Oxides + Salts Survival Guide",body:"• Acid: Ionizes in water to produce H+ ions as the only positive ions.\n• Base: Reacts with an acid to form salt and water ONLY.\n• Solvent Trap: HCl in methylbenzene does NOT ionize -> dry blue litmus stays BLUE!\n• Amphoteric Oxides (Z-A-L): ZnO, Al2O3, PbO react with both acids & alkalis.\n• Salt Trap: React PbCO3 with dilute HNO3 first, then precipitate with H2SO4."},
+  {sub:"Grade 10 Biology",col:"#10b981",title:"Photosynthesis & Practical Safety Playbook",body:"• Light Stage (Grana): Photolysis splits water into O2, H atoms & ATP.\n• Dark Stage (Stroma): Enzymes use ATP + H to fix CO2 into glucose.\n• Starch Test Safety: Boil leaf in ethanol inside a WATER BATH (ethanol is flammable)."},
+  {sub:"Grade 10 Physics",col:"#8b5cf6",title:"Radioactivity & Magnetic Deflection Guide",body:"• Alpha (+2): Stopped by paper; bends gently.\n• Beta (-1): Stopped by 3mm aluminium; bends sharply.\n• Gamma (0): Zero charge -> ZERO deflection in magnetic/electric fields."},
+  {sub:"Grade 9–12 Math",col:"#f59e0b",title:"Rational vs. Irrational Numbers Map",body:"• Rational: Expressible as fraction a/b (terminating & recurring decimals, √16 = 4).\n• Irrational: Non-terminating, non-recurring decimals (√2, √3, π)."}
+];
+const CBE_Q=[
+  {q:"1. Dry HCl in methylbenzene meets DRY blue litmus. Result?",o:["Turns red","Stays blue (no H+ ions)","Bleaches white"],a:1,e:"No H+ ions form in methylbenzene, so dry blue litmus stays blue!"},
+  {q:"2. Why boil a leaf in ethanol inside a WATER BATH?",o:["Soften veins","Ethanol is highly flammable","Burst starch"],a:1,e:"Ethanol vapor catches fire easily near an open flame!"},
+  {q:"3. Why are gamma rays NOT deflected in a magnetic field?",o:["Too fast","Low ionization","Zero electric charge"],a:2,e:"Magnetic fields only deflect moving electric charges."}
+];
+let secs=1500,tInt=null,qi=-1,mins=+(localStorage.getItem('st_m')||0),uName=localStorage.getItem('st_u')||'';
+if(uName)document.getElementById('userGreeting').textContent='Karibu, '+uName+'!';
+function goDim(i,b){document.querySelectorAll('.dim').forEach((d,x)=>d.classList.toggle('on',x===i));document.querySelectorAll('.d-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+function setMins(m){pauseT();secs=m*60;updClock()}
+function updClock(){document.getElementById('clock').textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0')}
+function startT(){if(tInt)return;tInt=setInterval(()=>{if(secs>0){secs--;updClock();if(secs%60===0){mins++;localStorage.setItem('st_m',mins);renderBadges()}}else{pauseT();alert('🎉 Session complete! Badges updated.')}},1000)}
+function pauseT(){clearInterval(tInt);tInt=null}
+function setWall(v){const c=document.getElementById('customWall');if(v==='custom'){c.style.display='block';return}c.style.display='none';document.getElementById('tRoom').style.backgroundImage=`url('${v}')`}
+function renderBadges(){document.getElementById('myMins').textContent=mins;document.getElementById('bdgGrid').innerHTML=BADGES.map(b=>`<div class="bdg ${mins>=b.m?'got':''}">${b.t}</div>`).join('')}
+function signInStudent(){const n=document.getElementById('sName').value.trim(),e=document.getElementById('sMail').value.trim();if(!n||!e)return alert('Enter Name & Gmail');uName=n;localStorage.setItem('st_u',n);document.getElementById('userGreeting').textContent='Karibu, '+n+'!';fetch('https://formspree.io',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({classroom_signin:n,gmail:e})});renderLB('Daily');alert('✅ Signed in to Stemora Classroom!')}
+function renderLB(p){document.getElementById('lbPeriod').textContent=p;const mult=p==='Daily'?1:p==='Weekly'?5:18;const rows=[{n:uName||'You (Sign In Above)',m:mins},{n:'Amina K. (Grade 10)',m:145*mult},{n:'Brian M. (Grade 11)',m:120*mult},{n:'Faith W. (Grade 9)',m:95*mult}].sort((a,b)=>b.m-a.m);document.getElementById('lbList').innerHTML=rows.map((r,i)=>`<div class="lb-row"><span><strong>#${i+1}</strong> ${r.n}</span><span style="color:#38bdf8;font-weight:800">${r.m} mins</span></div>`).join('')}
+function drawNotes(){const q=document.getElementById('qBox').value.toLowerCase();document.getElementById('noteGrid').innerHTML=NOTES.filter(n=>n.title.toLowerCase().includes(q)||n.sub.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)).map((n,i)=>`<div class="card" style="border-top:4px solid ${n.col}"><div class="pill" style="color:${n.col}">${n.sub}</div><h3>${n.title}</h3><p style="color:var(--muted);font-size:.86rem;margin:.5rem 0 1rem">${n.body.split('\n')[0]}</p><button class="btn btn-p" style="width:100%;background:${n.col};color:#060b19" onclick="openNote(${i})">📖 Read Full Free Guide + Video</button></div>`).join('')}
+function openNote(i){const n=NOTES[i];document.getElementById('rTitle').textContent=n.title;document.getElementById('rBody').textContent=n.body;document.getElementById('readerModal').style.display='block'}
+function nextQ(){qi=(qi+1)%CBE_Q.length;const c=CBE_Q[qi],fb=document.getElementById('qFb');fb.style.display='none';document.getElementById('qText').textContent=c.q;document.getElementById('qOpts').innerHTML=c.o.map((t,i)=>`<button class="btn btn-o" style="display:block;width:100%;text-align:left;margin:.4rem 0" onclick="ansQ(${i})">${t}</button>`).join('')}
+function ansQ(i){const c=CBE_Q[qi],fb=document.getElementById('qFb');fb.style.display='block';fb.style.background=i===c.a?'rgba(16,185,129,.2)':'rgba(239,68,68,.2)';fb.textContent=(i===c.a?'✅ ':'❌ ')+c.e}
+drawNotes();nextQ();renderBadges();renderLB('Daily');document.getElementById('quoteBox').textContent=QUOTES[new Date().getDate()%QUOTES.length];</script></body></html>
