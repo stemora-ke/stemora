@@ -3,35 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stemora — Digital Study Library &amp; Exam-Trap Marketplace</title>
+  <title>Stemora Academy — Grade 10 CBC / CBE Visual STEM &amp; Study Hub</title>
+  <!-- Custom Colorful Circular "S" Browser Tab Icon (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='ke' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2310b981'/%3E%3Cstop offset='50%25' stop-color='%23ef4444'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='%23070a10' stroke='url(%23ke)' stroke-width='4.5'/%3E%3Ctext x='32' y='44' font-family='Arial, sans-serif' font-size='35' font-weight='900' fill='url(%23ke)' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
-      --bg: #0b0e14;
-      --surface: #141923;
-      --surface-alt: #1b2230;
-      --border: #263042;
-      --primary: #10b981;
-      --primary-dark: #059669;
-      --accent: #f59e0b;
-      --text: #f1f5f9;
+      --bg: #070a0f;
+      --surface: #101622;
+      --surface-alt: #172033;
+      --border: #25324b;
+      --green: #10b981;
+      --green-dark: #059669;
+      --red: #ef4444;
+      --gold: #f59e0b;
+      --text: #f8fafc;
       --muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
+      background: radial-gradient(circle at top, #0f1f1c 0%, var(--bg) 50%);
       color: var(--text);
       line-height: 1.6;
     }
 
-    /* Top Bar */
+    /* Kenyan Flag Top Accent Stripe */
+    .ke-ribbon {
+      height: 5px;
+      background: linear-gradient(90deg, #000000 0%, #000000 30%, #ffffff 32%, #bb0000 34%, #bb0000 66%, #ffffff 68%, #006600 70%, #006600 100%);
+    }
+
+    /* Header */
     header {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(7, 10, 15, 0.92);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav-wrap {
@@ -41,187 +50,247 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
       flex-wrap: wrap;
+      gap: 1rem;
     }
-    .logo { font-size: 1.45rem; font-weight: 800; color: var(--text); text-decoration: none; }
-    .logo span { color: var(--primary); }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+    .brand-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: conic-gradient(from 45deg, var(--green), var(--gold), var(--red), var(--green));
+      padding: 2.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-circle span {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+    .brand-text em { font-style: normal; color: var(--green); }
     nav a {
       color: var(--muted);
       text-decoration: none;
       margin-left: 1.25rem;
-      font-size: 0.95rem;
-      font-weight: 500;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s;
     }
-    nav a:hover { color: var(--primary); }
+    nav a:hover { color: var(--green); }
 
-    /* Hero + Live Search */
+    /* Hero */
     .hero {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 3.5rem 1.5rem 2.5rem;
+      padding: 3.8rem 1.5rem 2.8rem;
       text-align: center;
     }
-    .badge {
-      display: inline-block;
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--primary);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 0.3rem 0.9rem;
+    .cbc-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      padding: 0.38rem 1rem;
       border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.12;
       margin-bottom: 1rem;
     }
-    .hero h1 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; line-height: 1.15; margin-bottom: 0.9rem; }
-    .hero p { max-width: 650px; margin: 0 auto 1.8rem; color: var(--muted); font-size: 1.05rem; }
-
-    .search-bar {
-      max-width: 560px;
-      margin: 0 auto;
+    .hero h1 span { color: var(--green); }
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 1.8rem;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+    .hero-cta {
       display: flex;
-      gap: 0.5rem;
+      justify-content: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .search-bar {
+      max-width: 580px;
+      margin: 0 auto;
     }
     .search-bar input {
-      flex: 1;
-      padding: 0.9rem 1.1rem;
-      border-radius: 10px;
+      width: 100%;
+      padding: 0.95rem 1.2rem;
+      border-radius: 12px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
-    .search-bar input:focus { outline: none; border-color: var(--primary); }
+    .search-bar input:focus { outline: none; border-color: var(--green); }
 
-    /* Library Section */
-    section { max-width: 1140px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-    .toolbar {
+    /* Pathway Strip */
+    .pathways {
+      max-width: 1140px;
+      margin: 0 auto 1rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+    .pathway-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+    .pathway-card.red { border-left-color: var(--red); }
+    .pathway-card.gold { border-left-color: var(--gold); }
+    .pathway-card strong { display: block; font-size: 0.98rem; margin-bottom: 0.2rem; }
+    .pathway-card span { color: var(--muted); font-size: 0.84rem; }
+
+    /* Sections */
+    section { max-width: 1140px; margin: 0 auto; padding: 2.8rem 1.5rem; }
+    .sec-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.8rem;
+      align-items: flex-end;
+      margin-bottom: 1.6rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
+    .sec-head h2 { font-size: 1.75rem; font-weight: 800; }
+    .sec-head p { color: var(--muted); }
+
+    /* Filters */
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .filter-btn {
       background: var(--surface);
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 0.45rem 1rem;
-      border-radius: 6px;
+      padding: 0.48rem 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.85rem;
     }
     .filter-btn.active, .filter-btn:hover {
-      background: var(--primary);
+      background: var(--green);
       color: #042f2e;
-      border-color: var(--primary);
+      border-color: var(--green);
     }
 
-    /* Note Cards */
+    /* Cards Grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(305px, 1fr));
       gap: 1.5rem;
     }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.15s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s;
     }
-    .card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .card:hover { transform: translateY(-4px); border-color: var(--green); }
     .card-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.85rem;
     }
     .tag {
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.74rem;
+      font-weight: 800;
       text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      background: rgba(148, 163, 184, 0.12);
-      color: var(--muted);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
     }
-    .price { font-size: 0.92rem; font-weight: 800; color: var(--accent); }
-    .price.free { color: var(--primary); }
-    .card h3 { font-size: 1.18rem; margin-bottom: 0.5rem; }
-    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.2rem; }
-    .card-actions { display: grid; grid-template-columns: 1fr 1.3fr; gap: 0.6rem; }
+    .price { font-size: 0.95rem; font-weight: 800; color: var(--gold); }
+    .price.free { color: var(--green); }
+    .card h3 { font-size: 1.18rem; margin-bottom: 0.3rem; }
+    .author-line { font-size: 0.8rem; color: #34d399; font-weight: 700; margin-bottom: 0.6rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.3rem; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1.35fr; gap: 0.65rem; }
 
     .btn {
       display: inline-block;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
+      padding: 0.78rem 1.1rem;
+      border-radius: 9px;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       border: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       text-align: center;
     }
-    .btn-primary { background: var(--primary); color: #042f2e; }
-    .btn-primary:hover { background: var(--primary-dark); color: #fff; }
+    .btn-primary { background: var(--green); color: #042f2e; }
+    .btn-primary:hover { background: var(--green-dark); color: #fff; }
     .btn-outline { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
-    .btn-outline:hover { border-color: var(--primary); }
+    .btn-outline:hover { border-color: var(--green); }
 
-    /* Preview Popup Modal */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.78);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
+    /* Interactive CBC Quiz Box */
+    .quiz-box {
+      background: linear-gradient(135deg, #101827 0%, #0d1b18 100%);
+      border: 1px solid var(--green);
+      border-radius: 16px;
+      padding: 2rem;
     }
-    .modal-box {
+    .quiz-q { font-size: 1.15rem; font-weight: 700; margin: 1rem 0; }
+    .quiz-options { display: grid; gap: 0.7rem; margin-bottom: 1rem; }
+    .quiz-opt {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-radius: 9px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      max-width: 600px;
-      width: 100%;
-      padding: 1.8rem;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .quiz-opt:hover { border-color: var(--green); }
+    .quiz-feedback {
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      display: none;
       margin-bottom: 1rem;
     }
-    .close-btn {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .preview-content {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.2rem;
-      color: var(--text);
-      font-size: 0.92rem;
-      margin-bottom: 1.2rem;
-      white-space: pre-line;
-    }
 
-    /* Creator Section */
+    /* Creator Form */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 2rem;
     }
     .form-grid {
@@ -232,84 +301,37 @@
     }
     input, select, textarea {
       width: 100%;
-      padding: 0.8rem;
-      border-radius: 8px;
+      padding: 0.85rem;
+      border-radius: 9px;
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--text);
       font-size: 0.95rem;
     }
-    textarea { grid-column: 1 / -1; min-height: 90px; }
+    textarea { grid-column: 1 / -1; min-height: 95px; }
 
-    footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 2.2rem 1.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 2rem;
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="nav-wrap">
-      <a href="#" class="logo">STEM<span>ORA</span></a>
-      <nav>
-        <a href="#library">Browse Notes</a>
-        <a href="#creator">Become a Creator</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="hero">
-    <div class="badge">Stemora Digital Study Library &bull; Kenya</div>
-    <h1>Read Sample Pages Free.<br />Unlock Full Exam Guides Instantly.</h1>
-    <p>Search verified CBE &amp; KCSE revision notes across any subject. Pay privately via M-Pesa and your PDF unlocks automatically 24/7.</p>
-    <div class="search-bar">
-      <input type="text" id="searchInput" onkeyup="renderNotes()" placeholder="Search topic (e.g., Acids, Radioactivity, Photosynthesis, Math)..." />
-    </div>
-  </div>
-
-  <section id="library">
-    <div class="toolbar">
-      <div class="filters">
-        <button class="filter-btn active" onclick="setSubject('All', this)">All Subjects</button>
-        <button class="filter-btn" onclick="setSubject('Chemistry', this)">Chemistry</button>
-        <button class="filter-btn" onclick="setSubject('Biology', this)">Biology</button>
-        <button class="filter-btn" onclick="setSubject('Physics', this)">Physics</button>
-        <button class="filter-btn" onclick="setSubject('Mathematics', this)">Mathematics</button>
-      </div>
-      <span id="countLabel" style="color: var(--muted); font-size: 0.9rem;"></span>
-    </div>
-
-    <div class="grid" id="notesGrid"></div>
-  </section>
-
-  <!-- Creator Sign-Up -->
-  <section id="creator">
-    <div class="panel">
-      <span class="badge">Earn From Your Notes</span>
-      <h2 style="margin-bottom: 0.4rem;">Publish &amp; Sell Your Notes on Stemora</h2>
-      <p style="color: var(--muted);">Have neat summary notes? Submit them below. Once approved, we list them on Stemora with automatic M-Pesa checkout and share revenue with you on every sale.</p>
-      <form class="form-grid" action="#" method="POST" onsubmit="handleCreator(event)">
-        <input type="text" name="name" placeholder="Your Full Name or Alias" required />
-        <input type="email" name="email" placeholder="Your Email Address" required />
-        <select name="subject" required>
-          <option value="">Select Subject</option>
-          <option value="Chemistry">Chemistry</option>
-          <option value="Biology">Biology</option>
-          <option value="Physics">Physics</option>
-          <option value="Mathematics">Mathematics</option>
-          <option value="Other">Other Subject</option>
-        </select>
-        <input type="url" name="link" placeholder="Google Drive link to your notes" required />
-        <textarea name="details" placeholder="Topics covered &amp; suggested price (e.g., KES 50 or KES 100)..." required></textarea>
-        <button type="submit" class="btn btn-primary" style="grid-column: 1 / -1;">Apply to Sell Notes on Stemora</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Free Sample Preview Modal -->
-  <div class="modal-backdrop" id="previewModal" onclick="closeModal(event)">
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--green);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      padding: 1.8rem;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
